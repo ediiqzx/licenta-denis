@@ -10,7 +10,7 @@
     <textarea id="long-desc" name="long-desc" placeholder="Lunga descriere a produsului"></textarea>
   </div>
   <div class="sizes">
-    <p class="name">Alege marimile disponibile:</p>d
+    <p class="name">Alege marimile disponibile:</p>
     <p class="inactive-size">35</p>
     <p class="inactive-size">36</p>
     <p class="inactive-size">37</p>
