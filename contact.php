@@ -3,8 +3,8 @@
 <div class="row">
   <form action="#">
     <div class="form-row">
-      <input type="text" id="nume" name="nume" placeholder="Numele tau">
-      <input type="text" id="email" name="email" type="email" placeholder="Email-ul tau">
+      <input type="text" id="nume" name="nume" placeholder="Numele tau" required>
+      <input type="email" id="email" name="email" placeholder="Email-ul tau" required>
     </div>
     <textarea id="mesaj" name="mesaj" placeholder="Mesajul tau"></textarea>
     <input id="send" type="submit" value="&#xf1d8; Trimite mesajul" style="font-family:Raleway, FontAwesome">
