@@ -3,8 +3,8 @@
 <div class="row">
   <form action="#">
     <div class="form-row">
-      <input type="text" id="nume" name="nume" placeholder="Numele tau" required>
-      <input type="email" id="email" name="email" placeholder="Email-ul tau" required>
+      <input type="text" id="nume" name="nume" placeholder="Numele tau">
+      <input type="text" id="email" name="email" type="email" placeholder="Email-ul tau">
     </div>
     <textarea id="mesaj" name="mesaj" placeholder="Mesajul tau"></textarea>
     <input id="send" type="submit" value="&#xf1d8; Trimite mesajul" style="font-family:Raleway, FontAwesome">
@@ -19,7 +19,7 @@
 
 <div class="mapouter">
   <div class="gmap_canvas">
-    <iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=FEAA%20galati&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+    <iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=papadie%20galati&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
     <a href="https://www.pureblack.de"></a>
   </div>
   <style>

@@ -13,78 +13,6 @@
 </div>
 
 <div class="content-products" id="produse">
-  <div class="product incaltaminte">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product tricou">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product tricou">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product incaltaminte">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product pantalon">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product incaltaminte">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product bluza">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product tricou">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product bluza">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product incaltaminte">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product bluza">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
-  <div class="product bluza">
-    <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-    <h1>Adidasi NIKE Arrowz Albi</h1>
-    <h2>Vrei să fii în trend cu prietenii tăi? Îți sugerăm această nouă pereche de adidași ideală pentru purtatul zilnic!</h2>
-    <div class="prod-bttn"><a href="product.php">Vezi detalii</a></div>
-  </div>
 </div>
 
 <div class="footer">
@@ -93,6 +21,7 @@
 
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/websitejs.js"></script>
+<script>showProducts();</script>
 
 </body>
 </html>
