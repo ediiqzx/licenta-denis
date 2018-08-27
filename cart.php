@@ -7,40 +7,13 @@
     <h3 class="h-3">Cantitate</h3>
     <h3 class="h-4">Total</h3>
   </div>
-  <div class="produs">
-    <div class="prod-main">
-      <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-      <p><i class="fa fa-times"></i> Adidasi NIKE Arrowz Albi</p>
-    </div>
-    <p class="prod-price">200 RON</p>
-    <input type="number" name="quantity" min="1" max="10">
-    <p class="prod-price-total">400 RON</p>
-  </div>
-  <div class="produs">
-    <div class="prod-main">
-      <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-      <p><i class="fa fa-times"></i> Adidasi NIKE Arrowz Albi</p>
-    </div>
-    <p class="prod-price">200 RON</p>
-    <input type="number" name="quantity" min="1" max="10">
-    <p class="prod-price-total">400 RON</p>
-  </div>
-  <div class="produs">
-    <div class="prod-main">
-      <div class="prod-img" style="background-image: url(img/p1.jpg);"></div>
-      <p><i class="fa fa-times"></i> Adidasi NIKE Arrowz Albi</p>
-    </div>
-    <p class="prod-price">200 RON</p>
-    <input type="number" name="quantity" min="1" max="10">
-    <p class="prod-price-total">400 RON</p>
-  </div>
 </div>
 
 <form class="checkout-form">
   <input type="text" id="nume" name="nume" placeholder="Numele tau" required>
   <input type="text" id="adresa" name="adresa" placeholder="Adresa de livrare" required>
   <input type="text" id="tlf" name="tlf" placeholder="Telefon de contact" required>
-  <input id="send" type="submit" value="&#xf218; Plaseaza comanda" style="font-family:Raleway, FontAwesome">
+  <input value="&#xf218; Plaseaza comanda" style="font-family:Raleway, FontAwesome" onclick="comanda()">
 </form>
 
 <div class="footer">

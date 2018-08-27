@@ -82,6 +82,7 @@ function uploadProduct(){
   var nume = document.getElementById('produs').value;
   var short_desc = document.getElementById('short-desc').value;
   var long_desc = document.getElementById('long-desc').value;
+  var price = document.getElementById('price').value;
 
   var p1 = document.getElementById('photo-1');
   var p2 = document.getElementById('photo-2');
@@ -102,6 +103,7 @@ function uploadProduct(){
     nume: nume,
     short_desc: short_desc,
     long_desc: long_desc,
+    price: price,
     sizes: sizes,
   }, function(error){
     if(!error){
@@ -206,6 +208,10 @@ function loadProduct(){
     }
     buttons.appendChild(select);
 
+    var price = document.createElement('p');
+    price.appendChild(document.createTextNode(snapshot.val().price + " RON"));
+    buttons.appendChild(price);
+
     var add = document.createElement('div');
     add.className = 'add-button';
     var redirect = document.createElement('a');
@@ -269,24 +275,143 @@ function loadProduct(){
 }
 
 function loadCart(){
-  var uid = firebase.auth().currentUser.uid;
-  var main = document.getElementById('cart');
+  firebase.auth().onAuthStateChanged(function(user){
+    if (user)
+    var uid = user.uid;
 
-  var ref = firebase.database().ref('users/' + uid);
-  ref.on('child_added', function(data){
-    var produs = document.createElement('div');
-    produs.className = 'produs';
+    var main = document.getElementById('cart');
 
-    var prod_main = document.createElement('div');
-    prod_main.className = 'prod-main';
+    var ref = firebase.database().ref('users/' + uid);
+    ref.on('child_added', function(data){
+      var produs = document.createElement('div');
+      produs.className = 'produs';
 
-    var prod_img = document.createElement('div');
-    prod_img.className = 'prod-img';
-    firebase.storage().ref('products/' + data.key + '/photo-1.png').getDownloadURL().then(function(url){
-      prod_img.style.backgroundImage = "url(" + url + ")";
+      var prod_main = document.createElement('div');
+      prod_main.className = 'prod-main';
+
+      var prod_img = document.createElement('div');
+      prod_img.className = 'prod-img';
+      firebase.storage().ref('products/' + data.val().product + '/photo-1.png').getDownloadURL().then(function(url){
+        prod_img.style.backgroundImage = "url(" + url + ")";
+      });
+      prod_main.appendChild(prod_img);
+
+      firebase.database().ref('products/' + data.val().product).once('value').then(function(snapshot){
+        var p = document.createElement('p');
+        var i = document.createElement('i');
+        i.className = 'fa fa-times';
+        i.onclick = function(){
+          firebase.database().ref("users/" + uid + "/" + data.key).remove();
+          window.location.replace('cart.php');
+        };
+        p.appendChild(i);
+        p.appendChild(document.createTextNode(snapshot.val().nume));
+        prod_main.appendChild(p);
+
+        var price = document.createElement('p');
+        price.className = 'prod-price';
+        price.appendChild(document.createTextNode(snapshot.val().price + "  RON"));
+        produs.appendChild(price);
+
+        var total = document.createElement('p');
+        price.className = 'prod-price-total';
+        total.appendChild(document.createTextNode(snapshot.val().price + "  RON"));
+
+        var qty = document.createElement('input');
+        qty.type = 'number';
+        qty.oninput = function(){
+          
+        };
+
+        produs.appendChild(qty);
+        produs.appendChild(total);
+      });
+
+      produs.appendChild(prod_main);
+      main.appendChild(produs);
     });
-    prod_main.appendChild(prod_img);
+  });
+}
 
-    produs.appendChild(prod_main);
+function comanda(){
+  var id = Date.now();
+  var nume = document.getElementById('nume').value;
+  var adresa = document.getElementById('adresa').value;
+  var telefon = document.getElementById('tlf').value;
+  var products = [];
+  var sizes = [];
+
+  firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+      var uid = user.uid;
+      var ref = firebase.database().ref('users/' + uid);
+      ref.on('child_added', function(data){
+        products.push(data.val().product);
+        sizes.push(data.val().size);
+      });
+      firebase.database().ref("orders/" + id).set({
+        nume: nume,
+        adresa: adresa,
+        telefon: telefon,
+        products: products,
+        sizes: sizes,
+      }, function(error){
+        if(!error){
+          window.location.replace('index.php');
+        }
+      });
+    }
+  });
+}
+
+function loadOrders(){
+  var orders = document.getElementById('orders');
+
+  var ref = firebase.database().ref('orders');
+  ref.on('child_added', function(data){
+    var order = document.createElement('div');
+    order.className = 'order';
+
+    var h1 = document.createElement('h1');
+    h1.appendChild(document.createTextNode(data.val().nume + " | " + data.val().adresa + " | " + data.val().telefon));
+    order.appendChild(h1);
+
+    for(i=0;i<data.val().products.length;i++){
+      firebase.database().ref("products/" + data.val().products[i]).once('value').then(function(snapshot){
+        var product = document.createElement('div');
+        product.className = 'order-product';
+
+        var ot1 = document.createElement('p');
+        ot1.id = 'ot1';
+        ot1.appendChild(document.createTextNode(snapshot.val().nume));
+        product.appendChild(ot1);
+
+        var ot2 = document.createElement('p');
+        ot2.id = 'ot2';
+        ot2.appendChild(document.createTextNode(snapshot.val().price + " RON"));
+        product.appendChild(ot2);
+
+        order.appendChild(product);
+      });
+    }
+
+    var buttons = document.createElement('div');
+    buttons.className = 'buttons';
+    var id1 = document.createElement('a');
+    id1.id = 'b1';
+    id1.appendChild(document.createTextNode('Comanda Nerealizata'));
+    buttons.appendChild(id1);
+
+    var id2 = document.createElement('a');
+    id2.id = 'b2';
+    id2.appendChild(document.createTextNode('Comanda Reusita'));
+    id2.onclick = function(){
+      firebase.database().ref('orders/' + data.key).remove();
+      window.location.replace('admin-orders.php');
+    };
+    buttons.appendChild(id2);
+
+    order.appendChild(buttons);
+    orders.appendChild(order);
   });
 }
