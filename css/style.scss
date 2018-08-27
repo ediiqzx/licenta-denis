@@ -411,13 +411,23 @@ form.checkout-form{
       &:focus{ opacity: 1;}
     }
   }
-  .sizes{
+  .sizes, .price{
     display: flex;
     align-items: center;
     p.name{ font-weight: 700; margin-right: 20px; }
     p.inactive-size{ padding: 8px 12px 10px 10px; border: 1px solid #1a1a1a; cursor: pointer; transition: 0.2s ease; margin-right: 20px; &:hover{ background: #1a1a1a; color: #fff;}}
     p.active-size{ padding: 8px 12px 10px 10px; cursor: pointer; transition: 0.2s ease; margin-right: 20px; color: #fff; background-color: #1a1a1a; transition: 0.2s ease; &:hover{ opacity: 0.5;}}
     margin-bottom: 20px;
+    input#price{
+      padding: 10px 20px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 16px;
+      border: #1a1a1a 1px solid;
+      opacity: 0.5;
+      transition: 0.2s ease;
+      margin-right: 10px;
+      &:focus{ opacity: 1; }
+    }
   }
 
   h2{ font-size: 16px; margin-bottom: 5px;}

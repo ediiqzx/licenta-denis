@@ -28,6 +28,10 @@
     <input type="checkbox" value="L" id="size15" class="inactive-size">L</p>
     <input type="checkbox" value="XL" id="size16" class="inactive-size">XL</p>
   </div>
+  <div class="price">
+    <p class="name">Adauga pretul produsului:</p>
+    <input type="text" id="price" name="price" placeholder="100"><p><strong>RON</strong></p>
+  </div>
   <h2>Incarca poza principala si 3 poze secundare ale produsului!</h2>
   <div class="images">
     <input type="file" name="photo-1" autocomplete="off" id="photo-1">

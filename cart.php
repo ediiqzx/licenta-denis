@@ -37,9 +37,9 @@
 </div>
 
 <form class="checkout-form">
-  <input type="text" id="nume" name="nume" placeholder="Numele tau">
-  <input type="text" id="adresa" name="adresa" placeholder="Adresa de livrare">
-  <input type="text" id="tlf" name="tlf" placeholder="Telefon de contact">
+  <input type="text" id="nume" name="nume" placeholder="Numele tau" required>
+  <input type="text" id="adresa" name="adresa" placeholder="Adresa de livrare" required>
+  <input type="text" id="tlf" name="tlf" placeholder="Telefon de contact" required>
   <input id="send" type="submit" value="&#xf218; Plaseaza comanda" style="font-family:Raleway, FontAwesome">
 </form>
 

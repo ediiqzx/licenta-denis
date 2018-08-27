@@ -618,18 +618,18 @@ form.checkout-form input[type=submit]:hover {
   opacity: 1;
 }
 
-.add-product .sizes {
+.add-product .sizes, .add-product .price {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.add-product .sizes p.name {
+.add-product .sizes p.name, .add-product .price p.name {
   font-weight: 700;
   margin-right: 20px;
 }
 
-.add-product .sizes p.inactive-size {
+.add-product .sizes p.inactive-size, .add-product .price p.inactive-size {
   padding: 8px 12px 10px 10px;
   border: 1px solid #1a1a1a;
   cursor: pointer;
@@ -637,12 +637,12 @@ form.checkout-form input[type=submit]:hover {
   margin-right: 20px;
 }
 
-.add-product .sizes p.inactive-size:hover {
+.add-product .sizes p.inactive-size:hover, .add-product .price p.inactive-size:hover {
   background: #1a1a1a;
   color: #fff;
 }
 
-.add-product .sizes p.active-size {
+.add-product .sizes p.active-size, .add-product .price p.active-size {
   padding: 8px 12px 10px 10px;
   cursor: pointer;
   transition: 0.2s ease;
@@ -652,8 +652,22 @@ form.checkout-form input[type=submit]:hover {
   transition: 0.2s ease;
 }
 
-.add-product .sizes p.active-size:hover {
+.add-product .sizes p.active-size:hover, .add-product .price p.active-size:hover {
   opacity: 0.5;
+}
+
+.add-product .sizes input#price, .add-product .price input#price {
+  padding: 10px 20px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  border: #1a1a1a 1px solid;
+  opacity: 0.5;
+  transition: 0.2s ease;
+  margin-right: 10px;
+}
+
+.add-product .sizes input#price:focus, .add-product .price input#price:focus {
+  opacity: 1;
 }
 
 .add-product h2 {
