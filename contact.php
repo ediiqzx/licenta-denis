@@ -1,13 +1,28 @@
 <?php include 'head.php'; ?>
 
+<?php
+
+if(isset($_POST['submit'])){
+  $text=$_POST['mesaj'];
+  $email=$_POST['email'];
+  $name=$_POST['nume'];
+  $headers = "Content-Type: text/html; charset=ISO-8859-1\r\n";
+  $headers .= "From: ".$name." <".$email.">";
+  $to = 'test@owndomain.com';
+  $mailtrimis = mail($to,"Contact ClothingHERO",$text,$headers);
+  echo "<script>alert('Multumim! Te vom contacta curand!')</script>";
+}
+
+?>
+
 <div class="row">
-  <form action="#">
+  <form action="" method="post">
     <div class="form-row">
       <input type="text" id="nume" name="nume" placeholder="Numele tau" required>
       <input type="email" id="email" name="email" placeholder="Email-ul tau" required>
     </div>
     <textarea id="mesaj" name="mesaj" placeholder="Mesajul tau"></textarea>
-    <input id="send" type="submit" value="&#xf1d8; Trimite mesajul" style="font-family:Raleway, FontAwesome">
+    <input type="submit"  id="send" name ="submit" value="&#xf1d8; Trimite mesajul" style="font-family:Raleway, FontAwesome">
   </form>
   <div class="details">
     <h1>DATE DE CONTACT</h1>

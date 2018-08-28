@@ -400,7 +400,7 @@ nav .nav-links a #nav-3 {
   visibility: hidden;
 }
 
-.account-content form input[type=text] {
+.account-content form input[type=text], .account-content form input[type=password] {
   width: 300px;
   margin-bottom: 20px;
   padding: 10px 20px;
@@ -412,7 +412,7 @@ nav .nav-links a #nav-3 {
   font-family: 'Raleway', sans-serif;
 }
 
-.account-content form input[type=text]:focus {
+.account-content form input[type=text]:focus, .account-content form input[type=password]:focus {
   opacity: 1;
 }
 

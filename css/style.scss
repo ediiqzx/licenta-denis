@@ -278,7 +278,7 @@ nav{
     align-items: center;
     h1{ font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 40px; }
     input#passf{ visibility: hidden; }
-    input[type=text]{
+    input[type=text], input[type=password]{
       width: 300px;
       margin-bottom: 20px;
       padding: 10px 20px;
