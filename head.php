@@ -17,11 +17,12 @@
 <body>
   <nav>
     <a href="index.php"><h1 class="title">Clothing <span style="font-weight:700">HERO</span></h1></a>
-    <input type="text" placeholder="&#xF002; Caută un produs..." autocomplete="off" style="font-family:Raleway, FontAwesome">
+    <input id="searchBar" type="text" placeholder="&#xF002; Caută un produs..." autocomplete="off" style="font-family:Raleway, FontAwesome" onkeypress="search()">
     <div class="nav-links">
       <a id="nav-1" onclick="goToCart()"><i class="fa fa-shopping-cart"></i>CART</a>
       <a href="login.php" id="nav-2">Register / Login</a>
       <a id="nav-3" onclick="logout()">Logout</a>
       <a href="contact.php" id="nav-4">Contact</a>
     </div>
+    <script>hideSearch()</script>
   </nav>

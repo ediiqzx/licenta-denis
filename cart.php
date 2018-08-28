@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<form class="checkout-form">
+<form class="checkout-form" id="form">
   <input type="text" id="nume" name="nume" placeholder="Numele tau" required>
   <input type="text" id="adresa" name="adresa" placeholder="Adresa de livrare" required>
   <input type="text" id="tlf" name="tlf" placeholder="Telefon de contact" required>

@@ -12,7 +12,7 @@
     <h1>CONECTEAZĂ-TE</h1>
     <input type="text" id="email-l" name="email-l" placeholder="Email-ul tau" required>
     <input type="password" id="pass" name="pass" type="password" placeholder="Parola ta" required>
-    <!--<input type="password" id="passf" name="passf" type="password" placeholder="Parola ta">-->
+    <!--<input type="text" id="passf" name="passf" type="password" placeholder="Parola ta">-->
     <input type="button" value="CONECTEAZĂ-TE" onclick="login()">
   </form>
 </div>

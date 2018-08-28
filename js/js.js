@@ -43,8 +43,10 @@ function register(){
   console.log("register");
     var email = document.getElementById("email-r").value;
     var parola = document.getElementById("pass1").value;
+    var pass2 = document.getElementById('pass2').value;
 
-    firebase.auth().createUserWithEmailAndPassword(email, parola).catch(function(error) {
+    if(parola === pass2){
+      firebase.auth().createUserWithEmailAndPassword(email, parola).catch(function(error) {
         
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -57,6 +59,10 @@ function register(){
           //alert("success");
         }
       });
+    }else{
+      alert("Passwords does not match!");
+      window.location.replace('login.php');
+    }
 }
 
 function logout(){
@@ -83,6 +89,7 @@ function uploadProduct(){
   var short_desc = document.getElementById('short-desc').value;
   var long_desc = document.getElementById('long-desc').value;
   var price = document.getElementById('price').value;
+  var category = " a";
 
   var p1 = document.getElementById('photo-1');
   var p2 = document.getElementById('photo-2');
@@ -98,6 +105,12 @@ function uploadProduct(){
       index++;
     }
   }
+  for(i=1;i<=4;i++){
+    var cat = document.getElementById('cat' + i);
+    if(cat.checked){
+      category = cat.value;
+    }
+  }
 
   firebase.database().ref("products/" + uniqueId).set({
     nume: nume,
@@ -105,8 +118,10 @@ function uploadProduct(){
     long_desc: long_desc,
     price: price,
     sizes: sizes,
+    category: category,
   }, function(error){
     if(!error){
+      console.log(category);
       // alert("Postare efectuata cu succes!");
       // window.location.replace("admin-products.php");
     }
@@ -122,11 +137,15 @@ function uploadProduct(){
   storageRef.put(p4.files[0]);
 }
 
-function showProducts(admin){
-  var ref = firebase.database().ref('products');
+function showProducts(admin, isSearched, search_word){
+  if(isSearched){
+    var ref = firebase.database().ref('products').orderByChild('nume').equalTo(search_word);
+  }else{
+    var ref = firebase.database().ref('products');
+  }
   ref.on('child_added', function(data){
     var product = document.createElement('div');
-    product.className = 'product';
+    product.className = 'product ' + data.val().category;
     var img = document.createElement('div');
     img.className = 'prod-img';
     firebase.storage().ref('products/' + data.key + '/photo-1.png').getDownloadURL().then(function(url){
@@ -227,6 +246,7 @@ function loadProduct(){
       firebase.database().ref('users/' + uid + '/' + Date.now()).set({
         product: id,
         size: select.options[select.selectedIndex].value,
+        quantity: 1,
       });
     }
 
@@ -275,11 +295,11 @@ function loadProduct(){
 }
 
 function loadCart(){
+  var main = document.getElementById('cart');
+  var totalPrice = 0;
   firebase.auth().onAuthStateChanged(function(user){
     if (user)
     var uid = user.uid;
-
-    var main = document.getElementById('cart');
 
     var ref = firebase.database().ref('users/' + uid);
     ref.on('child_added', function(data){
@@ -315,10 +335,20 @@ function loadCart(){
 
         var total = document.createElement('p');
         price.className = 'prod-price-total';
-        total.appendChild(document.createTextNode(snapshot.val().price + "  RON"));
-
+        total.appendChild(document.createTextNode(snapshot.val().price * data.val().quantity + "  RON"));
+        totalPrice = totalPrice + (snapshot.val().price * data.val().quantity);
+        
         var qty = document.createElement('input');
         qty.type = 'number';
+        qty.onkeypress = function(){
+          if (event.which == 13 || event.keyCode == 13) {
+            firebase.database().ref('users/' + uid + "/" + data.key).update({
+              quantity: qty.value,
+            });
+            window.location.replace('cart.php');
+          }
+        };
+        qty.placeholder = data.val().quantity;
         qty.oninput = function(){
           
         };
@@ -331,6 +361,12 @@ function loadCart(){
       main.appendChild(produs);
     });
   });
+  var button = document.createElement('input');
+  button.value = "AFISEAZA TOTAL";
+  button.onclick = function(){
+    main.appendChild(document.createTextNode("TOTAL: " + totalPrice));
+  }
+  document.getElementById('form').appendChild(button);
 }
 
 function comanda(){
@@ -340,6 +376,7 @@ function comanda(){
   var telefon = document.getElementById('tlf').value;
   var products = [];
   var sizes = [];
+  var quantities = [];
 
   firebase.auth().onAuthStateChanged(function(user){
     if(user){
@@ -348,6 +385,7 @@ function comanda(){
       ref.on('child_added', function(data){
         products.push(data.val().product);
         sizes.push(data.val().size);
+        quantities.push(data.val().quantity);
       });
       firebase.database().ref("orders/" + id).set({
         nume: nume,
@@ -355,8 +393,10 @@ function comanda(){
         telefon: telefon,
         products: products,
         sizes: sizes,
+        quantities: quantities,
       }, function(error){
         if(!error){
+          alert('Comanda plasata!');
           window.location.replace('index.php');
         }
       });
@@ -377,18 +417,21 @@ function loadOrders(){
     order.appendChild(h1);
 
     for(i=0;i<data.val().products.length;i++){
+      var cantitatea = data.val().quantities[i];
+      // console.log(data.val().quantities[i] + " | " + cantitatea);
       firebase.database().ref("products/" + data.val().products[i]).once('value').then(function(snapshot){
         var product = document.createElement('div');
         product.className = 'order-product';
 
         var ot1 = document.createElement('p');
         ot1.id = 'ot1';
-        ot1.appendChild(document.createTextNode(snapshot.val().nume));
+        ot1.appendChild(document.createTextNode(cantitatea + "x " + snapshot.val().nume));
         product.appendChild(ot1);
+        console.log(i);
 
         var ot2 = document.createElement('p');
         ot2.id = 'ot2';
-        ot2.appendChild(document.createTextNode(snapshot.val().price + " RON"));
+        ot2.appendChild(document.createTextNode(cantitatea * snapshot.val().price + " RON"));
         product.appendChild(ot2);
 
         order.appendChild(product);
@@ -414,4 +457,22 @@ function loadOrders(){
     order.appendChild(buttons);
     orders.appendChild(order);
   });
+}
+
+function hideSearch(){
+  if(window.location.pathname !== "/index.php"){
+    document.getElementById('searchBar').style.visibility = "hidden";
+  }
+}
+
+function search(){
+  if (event.which == 13 || event.keyCode == 13) {
+      document.getElementById('produse').innerHTML = "";
+      var search_word = document.getElementById('searchBar').value;
+      if(search_word === ""){
+        showProducts(false, false, "");
+      }else{
+        showProducts(false, true, search_word);
+      }
+  }
 }

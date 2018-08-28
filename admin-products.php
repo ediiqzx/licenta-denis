@@ -28,6 +28,13 @@
     <input type="checkbox" value="L" id="size15" class="inactive-size">L</p>
     <input type="checkbox" value="XL" id="size16" class="inactive-size">XL</p>
   </div>
+  <div class="sizes">
+    <p class="name">Alege categoria:</p>
+    <input type="checkbox" value="bluza" id="cat1" class="inactive-size">BLUZA</p>
+    <input type="checkbox" value="tricou" id="cat2" class="inactive-size">TRICOU</p>
+    <input type="checkbox" value="pantalon" id="cat3" class="inactive-size">PANTALONI</p>
+    <input type="checkbox" value="incaltaminte" id="cat4" class="inactive-size">INCALTAMINTE</p>
+  </div>
   <div class="price">
     <p class="name">Adauga pretul produsului:</p>
     <input type="text" id="price" name="price" placeholder="100"><p><strong>RON</strong></p>
